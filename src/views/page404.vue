@@ -1,10 +1,10 @@
 <template>
-  wqeqweq
+  page404
 </template>
 
 <script>
 export default {
-  name: 'AllList',
+  name: 'page404',
 };
 </script>
 
