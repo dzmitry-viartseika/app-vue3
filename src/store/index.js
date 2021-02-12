@@ -24,14 +24,23 @@ export default createStore({
     tasksList: (state) => state.tasksList,
   },
   mutations: {
-    [types.ADD_NEW_TASK](state, data) {
+    [types.ADD_NEW_TASK](getters, data) {
+      getters.tasksList.push(data);
+    },
+    [types.CHANGED_STATUS](getters, data) {
       console.log('data', data);
-      state.tasksList.push(data);
+      const { id } = data;
+      const task = getters.tasksList.findIndex((el) => el.id === id);
+      getters.tasksList.splice(task, 1, data);
+      console.log('tasksList', getters.tasksList);
     },
   },
   actions: {
     addNewTask({ commit }, data) {
       commit(types.ADD_NEW_TASK, data);
+    },
+    changedStatus({ commit }, data) {
+      commit(types.CHANGED_STATUS, data);
     },
   },
   modules: {

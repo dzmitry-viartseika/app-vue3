@@ -10,6 +10,8 @@
       </div>
       <div class="app-create-form__field">
         <div class="app-create-form__field-label">Дата сдачи</div>
+        task.date={{ task.date }}
+        now={{ Date.now() }}
         <input type="date" v-model="task.date" class="app-create-form__field-input">
       </div>
       <div class="app-create-form__field">
