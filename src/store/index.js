@@ -28,11 +28,9 @@ export default createStore({
       getters.tasksList.push(data);
     },
     [types.CHANGED_STATUS](getters, data) {
-      console.log('data', data);
       const { id } = data;
       const task = getters.tasksList.findIndex((el) => el.id === id);
       getters.tasksList.splice(task, 1, data);
-      console.log('tasksList', getters.tasksList);
     },
   },
   actions: {

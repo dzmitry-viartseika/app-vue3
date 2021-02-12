@@ -5,7 +5,10 @@
         {{ activeTask.title }}
       </div>
       <div class="app-task-info__status">
-        Статус: {{ activeTask.status }}
+        <div>
+          Статус:
+        </div>
+        <appStatus :type="activeTask.status" />
       </div>
       <div class="app-task-info__date">
         Время сдачи: {{ activeTask.date }}
@@ -25,22 +28,25 @@
 <script>
 import { useRoute } from 'vue-router';
 import { useStore } from 'vuex';
-import { computed } from 'vue';
+import { computed, reactive } from 'vue';
+import appStatus from '@/components/appStatus.vue';
 
 export default {
   name: 'Task',
+  components: {
+    appStatus,
+  },
   setup() {
     const route = useRoute();
     const store = useStore();
     const { params: { id } } = route;
     const allTasksList = computed(() => store.getters.tasksList);
     const task = allTasksList.value.find((item) => item.id === id);
-    const activeTask = {
+    const activeTask = reactive({
       ...task,
-    };
+    });
 
     const actionBtn = (status) => {
-      console.log('status', status);
       if (status === 'process') {
         activeTask.status = 'pending';
       } else if (status === 'done') {
@@ -48,8 +54,6 @@ export default {
       } else if (status === 'cancelled') {
         activeTask.status = 'cancelled';
       }
-      const test = allTasksList.value.findIndex((el) => el.id === activeTask.id);
-      allTasksList.value.splice(test, 1, activeTask);
       store.dispatch('changedStatus', activeTask);
     };
 
@@ -75,10 +79,16 @@ export default {
     background: $color-white;
     width: 100%;
     padding: 40px 15px 10px;
+    border-radius: 10px;
 
     &__title {
       font-size: 40px;
       margin-bottom: 30px;
+    }
+
+    &__status {
+      display: flex;
+      justify-content: space-between;
     }
 
     &__actions {

@@ -6,6 +6,7 @@ body {
 
 .app {
   background: #0b0e1d;
+  height: 100vh;
 
   &__container {
     width: 70%;
@@ -16,6 +17,7 @@ body {
   &__title {
     font-size: 30px;
     color: $color-white;
+    margin-bottom: 15px;
   }
 }
 

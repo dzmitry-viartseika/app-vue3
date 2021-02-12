@@ -1,7 +1,7 @@
 const navList = [
   {
     id: 1,
-    route: 'all',
+    route: '/',
     text: 'Все задачи',
   },
   {

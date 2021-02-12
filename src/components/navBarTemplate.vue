@@ -4,7 +4,9 @@
       Freelance
     </div>
     <nav class="app-header__nav">
+      test={{ test }}
       <a class="app-header__link"
+         :class="{'app-header__link_active': test === link.route}"
          v-for="link in navList"
          :key="link.id"
          @click.prevent="proceedTo(link.route)">
@@ -17,18 +19,28 @@
 <script>
 import navList from '@/constants/navList';
 import { useRouter } from 'vue-router';
+import { ref } from 'vue';
 
 export default {
   name: 'navBarTemplate',
-  setup() {
+  props: {
+    activeRoute: {
+      type: String,
+    },
+  },
+  setup(props) {
     const router = useRouter();
+    const test = ref(props.activeRoute);
+    console.log('test', test.value);
 
     const proceedTo = (route) => {
       router.push(`${route}`);
+      test.value = route;
     };
     return {
       proceedTo,
       navList,
+      test,
     };
   },
 };
@@ -69,6 +81,13 @@ export default {
 
   &__link + .app-header__link {
     margin-left: 10px;
+  }
+
+  &__link {
+
+    &_active {
+      color: green;
+    }
   }
 }
 

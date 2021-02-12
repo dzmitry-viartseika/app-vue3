@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <navBarTemplate />
+    <navBarTemplate :activeRoute="activeRoute"/>
     <div class="app__container">
       <router-view/>
     </div>
@@ -9,13 +9,27 @@
 
 <script>
 import navBarTemplate from '@/components/navBarTemplate.vue';
+import { onBeforeMount, ref } from 'vue';
+import { useRoute } from 'vue-router';
 
 export default {
   name: 'App',
   components: {
     navBarTemplate,
   },
-  setup() {},
+  setup() {
+    const route = useRoute();
+    const activeRoute = ref(null);
+
+    onBeforeMount(() => {
+      const { path } = route;
+      activeRoute.value = `/${path}`;
+    });
+
+    return {
+      activeRoute,
+    };
+  },
 };
 </script>
 

@@ -13,8 +13,8 @@
       <div class="app-home__item-date">
         {{ task.date }}
       </div>
-      <div class="app-home__item-desciption">
-        {{ task.desciption }}
+      <div class="app-home__item-description">
+        {{ task.description }}
       </div>
       <button class="app-button" @click="goToRoute(task.id)"> Посмотреть </button>
     </div>
@@ -39,7 +39,6 @@ export default {
     const activeTasks = computed(() => allTaskList.filter((task) => task.status === 'active'));
 
     const goToRoute = (id) => {
-      console.log('id', id);
       router.push({
         name: 'Task',
         params: {
@@ -62,6 +61,7 @@ export default {
 
 .app-home {
   height: 100%;
+  margin-top: 15px;
 
   &__item {
     background: $color-white;
@@ -86,6 +86,10 @@ export default {
       padding-bottom: 15px;
       font-size: 16px;
       font-weight: 700;
+    }
+
+    &-description {
+      margin-bottom: 20px;
     }
   }
 }
