@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '@/views/Home.vue';
 import CreateTask from '@/views/CreateTask.vue';
 import Task from '@/views/Task.vue';
-// import page404 from '@/views/page404.vue';
+import page404 from '@/views/page404.vue';
 
 const routes = [
   {
@@ -20,11 +20,11 @@ const routes = [
     name: 'Task',
     component: Task,
   },
-  // {
-  //   path: '*',
-  //   name: 'page404',
-  //   component: page404,
-  // },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'page404',
+    component: page404,
+  },
 ];
 
 const router = createRouter({
