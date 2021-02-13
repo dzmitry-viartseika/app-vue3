@@ -6,7 +6,7 @@ const navList = [
   },
   {
     id: 2,
-    route: 'new',
+    route: '/new',
     text: 'Создать',
   },
 ];

@@ -4,17 +4,27 @@
       <div class="app-task-info__title">
         {{ activeTask.title }}
       </div>
-      <div class="app-task-info__status">
-        <div>
+      <div class="app-task-info__field app-task-info__field_between">
+        <div class="app__subtitle">
           Статус:
         </div>
         <appStatus :type="activeTask.status" />
       </div>
-      <div class="app-task-info__date">
-        Время сдачи: {{ activeTask.date }}
+      <div  class="app-task-info__field">
+        <div class="app__subtitle">
+          Время сдачи:
+        </div>
+        <div class="app-task-info__field-text">
+          {{ activeTask.date }}
+        </div>
       </div>
-      <div class="app-task-info__description">
-        Описание: {{ activeTask.description }}
+      <div  class="app-task-info__field">
+        <div class="app__subtitle">
+          Описание:
+        </div>
+        <div class="app-task-info__field-text">
+          {{ activeTask.description }}
+        </div>
       </div>
       <div class="app-task-info__actions">
         <button class="app-button" @click="actionBtn('process')">Взять в работу</button>
@@ -81,6 +91,22 @@ export default {
     padding: 40px 15px 10px;
     border-radius: 10px;
 
+    &__field {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+
+      &-text {
+        margin-left: 20px;
+        font-size: 18px;
+        color: $color-logo;
+      }
+
+      &_between {
+        justify-content: space-between;
+      }
+    }
+
     &__title {
       font-size: 40px;
       margin-bottom: 30px;
@@ -92,6 +118,7 @@ export default {
     }
 
     &__actions {
+      margin-top: 20px;
 
       button + button {
         margin-left: 15px;

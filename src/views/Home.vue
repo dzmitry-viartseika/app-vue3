@@ -62,12 +62,17 @@ export default {
 .app-home {
   height: 100%;
   margin-top: 15px;
+  padding-bottom: 30px;
 
   &__item {
     background: $color-white;
     padding: 30px 10px 10px;
     margin-bottom: 15px;
     border-radius: 10px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
 
     &-header {
       display: flex;

@@ -10,8 +10,6 @@
       </div>
       <div class="app-create-form__field">
         <div class="app-create-form__field-label">Дата сдачи</div>
-        task.date={{ task.date }}
-        now={{ Date.now() }}
         <input type="date" v-model="task.date" class="app-create-form__field-input">
       </div>
       <div class="app-create-form__field">
@@ -42,6 +40,13 @@ export default {
     const store = useStore();
     const router = useRouter();
     const test = store.getters.tasksList;
+    const date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    if (month < 10) month = `0${month}`;
+    if (day < 10) day = `0${day}`;
+    const today = `${year}-${month}-${day}`;
     const task = reactive({
       id: JSON.stringify(getUniqueId()),
       title: '',
@@ -54,6 +59,7 @@ export default {
       && task.description !== '');
 
     const addNewTask = () => {
+      task.status = task.date >= today ? 'active' : 'cancelled';
       store.dispatch('addNewTask', task);
       router.push('/');
     };

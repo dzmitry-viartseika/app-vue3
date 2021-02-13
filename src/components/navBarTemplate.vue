@@ -4,7 +4,6 @@
       Freelance
     </div>
     <nav class="app-header__nav">
-      test={{ test }}
       <a class="app-header__link"
          :class="{'app-header__link_active': test === link.route}"
          v-for="link in navList"
@@ -28,13 +27,13 @@ export default {
       type: String,
     },
   },
-  setup(props) {
+  setup() {
     const router = useRouter();
-    const test = ref(props.activeRoute);
-    console.log('test', test.value);
+    const { location: { pathname } } = window;
+    const test = ref(pathname);
 
     const proceedTo = (route) => {
-      router.push(`${route}`);
+      router.push(route);
       test.value = route;
     };
     return {
