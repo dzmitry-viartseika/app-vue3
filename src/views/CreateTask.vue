@@ -100,7 +100,7 @@ export default {
 
       &-label {
         margin-bottom: 10px;
-        font-size: 14px;
+        font-size: $font-size-base;
         font-weight: bold;
       }
 

@@ -5,7 +5,7 @@ body {
 }
 
 .app {
-  background: #0b0e1d;
+  background: $bodyBgColor;
   min-height: 100vh;
 
   &__container {
